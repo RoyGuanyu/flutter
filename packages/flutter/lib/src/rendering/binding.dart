@@ -42,8 +42,11 @@ mixin RendererBinding on BindingBase, ServicesBinding, SchedulerBinding, Gesture
     initRenderView();
     _handleSemanticsEnabledChanged();
     assert(renderView != null);
-    addPersistentFrameCallback(_handlePersistentFrameCallback);
     initMouseTracker();
+  }
+
+  void initPersistentFrameCallback() {
+    addPersistentFrameCallback(_handlePersistentFrameCallback);
   }
 
   /// The current [RendererBinding], if one has been created.
