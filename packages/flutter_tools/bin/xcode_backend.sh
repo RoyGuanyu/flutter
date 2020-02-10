@@ -107,11 +107,16 @@ BuildApp() {
 
   local flutter_engine_flag=""
   local local_engine_flag=""
+  local extra_gen_snapshot_options_or_none=""
   local flutter_framework="${framework_path}/Flutter.framework"
   local flutter_podspec="${framework_path}/Flutter.podspec"
 
   if [[ -n "$FLUTTER_ENGINE" ]]; then
     flutter_engine_flag="--local-engine-src-path=${FLUTTER_ENGINE}"
+  fi
+  
+  if [[ -n "$EXTRA_GEN_SNAPSHOT_OPTIONS" ]]; then
+    extra_gen_snapshot_options_or_none="--extra-gen-snapshot-options=$EXTRA_GEN_SNAPSHOT_OPTIONS"
   fi
 
   if [[ -n "$LOCAL_ENGINE" ]]; then
@@ -190,6 +195,7 @@ BuildApp() {
       ${flutter_engine_flag}                                                \
       ${local_engine_flag}                                                  \
       ${bitcode_flag}
+      ${extra_gen_snapshot_options_or_none}
 
     if [[ $? -ne 0 ]]; then
       EchoError "Failed to build ${project_path}."
