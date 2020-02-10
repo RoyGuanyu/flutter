@@ -194,7 +194,7 @@ BuildApp() {
       --ios-arch="${archs}"                                                 \
       ${flutter_engine_flag}                                                \
       ${local_engine_flag}                                                  \
-      ${bitcode_flag}
+      ${bitcode_flag}                                                       \
       ${extra_gen_snapshot_options_or_none}
 
     if [[ $? -ne 0 ]]; then
